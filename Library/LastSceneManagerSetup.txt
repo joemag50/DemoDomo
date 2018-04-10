@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Scenes/DemoDomo.unity
+  isLoaded: 1
+  isActive: 1
