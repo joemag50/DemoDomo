@@ -11,7 +11,7 @@ public class DoorRotationLite : MonoBehaviour
     // Inspector Settings
     public float InitialAngle = 0.0F;
     public float RotationAngle = 90.0F;
-    public enum SideOfRotation { Left, Right }
+    public enum SideOfRotation { Left, Right, Up}
     public SideOfRotation RotationSide;
     [StayPositive]
     public float Speed = 3F;
@@ -19,7 +19,7 @@ public class DoorRotationLite : MonoBehaviour
 
     // Hinge
     private GameObject hinge;
-    public enum PositionOfHinge { Left, Right }
+    public enum PositionOfHinge { Left, Right, Up}
     public PositionOfHinge HingePosition;
 
     // 3rd party compatibility
@@ -121,6 +121,17 @@ public class DoorRotationLite : MonoBehaviour
             }
         }
 
+        if (HingePosition == PositionOfHinge.Up)
+        {
+        	Debug.Log("ArribaaaAs");
+            HingePosCopy.x = (PosDoorX + (ScaleDoorX / 2 * CosDeg));
+            HingePosCopy.z = (PosDoorZ);
+            HingePosCopy.y = PosDoorY;
+
+            HingeRotCopy.x = RotDoorX;
+            HingeRotCopy.y = -InitialAngle;
+            HingeRotCopy.z = RotDoorZ;
+        }
         // Hinge Positioning
         hinge.transform.position = HingePosCopy;
         transform.parent = hinge.transform;
@@ -155,6 +166,12 @@ public class DoorRotationLite : MonoBehaviour
         {
             InitialRot = Quaternion.Euler(0, -InitialAngle, 0);
             FinalRot = Quaternion.Euler(0, -InitialAngle + RotationAngle, 0);
+        }
+
+        if (RotationSide == SideOfRotation.Up)
+        {
+            InitialRot = Quaternion.Euler(0, 0, -InitialAngle);
+            FinalRot = Quaternion.Euler(0, 0, -InitialAngle - RotationAngle);
         }
 
         if (DoorScale == ScaleOfDoor.Unity3DUnits && PivotPosition == PositionOfPivot.Centered)
