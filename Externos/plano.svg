@@ -502,8 +502,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.69999999"
-     inkscape:cx="-3281.618"
-     inkscape:cy="-2121.4564"
+     inkscape:cx="-3495.1894"
+     inkscape:cy="-2581.4564"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -1439,6 +1439,13 @@
        height="900.00006"
        x="-2857.6062"
        y="2771.3484" />
+    <rect
+       style="opacity:1;fill:#00ff00;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:8, 8;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4382"
+       width="171.42857"
+       height="95.714287"
+       x="-4092.8572"
+       y="3886.6479" />
   </g>
   <g
      inkscape:groupmode="layer"
