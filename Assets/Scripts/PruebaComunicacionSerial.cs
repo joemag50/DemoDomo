@@ -6,17 +6,15 @@ using System.IO.Ports;
 
 public class PruebaComunicacionSerial : MonoBehaviour
 {
-    SerialPort seri = new SerialPort("COM3", 9600);
+    SerialPort seri;
     float ciclo = 10;
     float tiempo;
     bool idaRegreso;
 
-    private void Awake()
-    {
-        
-    }
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        seri = new SerialPort("COM3", 9600);
         seri.Open();
         tiempo = ciclo;
         idaRegreso = false;
@@ -26,6 +24,10 @@ public class PruebaComunicacionSerial : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (!seri.IsOpen)
+        {
+            return;
+        }
 
         if (idaRegreso)
         {
