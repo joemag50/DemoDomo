@@ -1,12 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading;
-
 using System.IO.Ports;
 using System;
 
-public class PruebaComunicacionSerial : MonoBehaviour
+public class ConArduino : MonoBehaviour
 {
     /* The serial port where the Arduino is connected. */
     [Tooltip("The serial port where the Arduino is connected")]
@@ -25,10 +23,8 @@ public class PruebaComunicacionSerial : MonoBehaviour
 
     void Update()
     {
-        WriteToArduino("PING");
-        Debug.Log(ReadFromArduino(40));
+        
     }
-
 
     public void Open()
     {
