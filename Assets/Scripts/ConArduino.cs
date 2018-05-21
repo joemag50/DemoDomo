@@ -14,11 +14,16 @@ public class ConArduino : MonoBehaviour
     [Tooltip("The baudrate of the serial port")]
     public int baudrate = 9600;
 
+    /*        */
+    [Header("Variables que vienen del serial")]
+    public string linea;
+    /*        */
+
     private SerialPort stream;
 
     void Start()
     {
-        Open();
+        //Open();
     }
 
     void Update()

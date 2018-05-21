@@ -23,12 +23,12 @@ public class Luces
 
     }
 
-    public Luces(string l, GameObject[] luces)
+    public void ReadLine(string l)
     {
         //Obtenemos la linea
         this.linea = l;
         //Limpiamos la linea
-        this.linea = this.linea.Replace("[", "").Replace("]","");
+        this.linea = this.linea.Replace("[", "").Replace("]", "");
         //Almacenamos toda la linea
         this.vars = this.linea.Split(';');
 
@@ -49,9 +49,6 @@ public class Luces
                 Debug.Log(this.vars[4]);
                 ObtenerGet();
             }
-
-            //Guardamos nuestros objetos de luces
-            this.lucesChidas = luces;
         }
     }
 
