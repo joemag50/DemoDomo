@@ -44,11 +44,6 @@ public class Luces
             {
                 guardarVarsCambio();
             }
-            else if (object.Equals(metodo, "get"))
-            {
-                Debug.Log(this.vars[4]);
-                ObtenerGet();
-            }
         }
     }
 
@@ -90,17 +85,5 @@ public class Luces
             go.SetActive(estado);
             i++;
         }
-    }
-
-    public string EnviarGet(int var)
-    {
-        string s = "[equipo=0;actualizacion=0;metodo=get;variable="+var+"]";
-        return s;
-    }
-
-    public void ObtenerGet()
-    {
-        this.variable = this.vars[3].Split('=')[1];
-        this.valor = this.vars[4].Split('=')[1];
     }
 }

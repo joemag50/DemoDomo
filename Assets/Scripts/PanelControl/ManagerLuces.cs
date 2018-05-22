@@ -9,20 +9,19 @@ public class ManagerLuces : MonoBehaviour
     public ConArduino arduino;
     public Luces Luz;
 
-    private bool[] luz1 = { false, false };
-    private bool[] luz2 = { false, false };
-    private bool[] luz3 = { false, false };
+    public IEnumerator lectura;
 
     // Use this for initialization
     void Start ()
     {
-
+        arduino = new ConArduino();
+        Conectar();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
+		lectura = arduino.AsynchronousReadFromArduino(Luz.ReadLine);
 	}
 
     public void Conectar()
