@@ -73,17 +73,4 @@ public class Luces
         }
         this.vars = v;
     }
-
-    //Enciende y apaga las luces cuando leemos la linea de cambio
-    public void EncenderApagarCambio()
-    {
-        int i = 0;
-        foreach (GameObject go in this.lucesChidas)
-        {
-            bool estado = bool.Parse(this.vars[i]);
-
-            go.SetActive(estado);
-            i++;
-        }
-    }
 }

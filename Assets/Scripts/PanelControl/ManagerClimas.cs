@@ -5,6 +5,7 @@ using TMPro;
 
 public class ManagerClimas : MonoBehaviour
 {
+    public bool ACTIVADO;
     public GameObject CPrincipal,
                       CClimas,
                       TextTempActual,
@@ -29,7 +30,11 @@ public class ManagerClimas : MonoBehaviour
 
     void Awake()
     {
-        //this.Conectar();
+        if (!ACTIVADO)
+        {
+            return;
+        }
+        Conectar();
     }
 
     // Use this for initialization
@@ -40,8 +45,10 @@ public class ManagerClimas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(arduino.ReadFromArduino(100));
-        return;
+        if (!ACTIVADO)
+        {
+            return;
+        }
         string textoDesdeArduino = arduino.ReadFromArduino(100);
         if (textoDesdeArduino != null)
         {

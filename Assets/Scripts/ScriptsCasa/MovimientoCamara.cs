@@ -5,18 +5,18 @@ using UnityEngine;
 public class MovimientoCamara : MonoBehaviour
 {
     public GameObject pos1, pos2, pos3, pos4, Camara;
-    int cam;
+    public int cam;
 	// Use this for initialization
 	void Start ()
     {
-        cam = 0;
+        this.cam = 0;
         OtraCamara();
 	}
 
     public void OtraCamara()
     {
-        cam++;
-        switch (cam)
+        this.cam++;
+        switch (this.cam)
         {
             case 1:
                 Camara.transform.position = pos1.transform.position;
@@ -33,7 +33,7 @@ public class MovimientoCamara : MonoBehaviour
             case 4:
                 Camara.transform.position = pos4.transform.position;
                 Camara.transform.rotation = Quaternion.Euler(new Vector3(45, -315, 0));
-                cam = 0;
+                this.cam = 0;
                 break;
             default:
                 break;

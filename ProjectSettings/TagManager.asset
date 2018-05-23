@@ -9,6 +9,7 @@ TagManager:
   - AspersorIncendio
   - Clima
   - AspersoresJardin
+  - PapaFocos
   layers:
   - Default
   - TransparentFX

@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Aspersores
+public class Accesos
 {
-    public float humedad;
-    public float temperatura;
-    public int aspersor;
-    public int hic;
-    public int alertaVentana;
-    public int estadoVentana;
-    public int activarAlarma;
+    public string nombre;
+    public string id;
+    public string ultimoAcceso;
 
     /* Atributos generales */
     public string linea;
@@ -21,7 +17,7 @@ public class Aspersores
     /* Atributos para el cambio*/
     public string[] vars;
 
-    public Aspersores()
+    public Accesos()
     {
 
     }

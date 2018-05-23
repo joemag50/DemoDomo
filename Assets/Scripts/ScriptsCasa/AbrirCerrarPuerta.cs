@@ -36,4 +36,20 @@ public class AbrirCerrarPuerta : MonoBehaviour
 
         GetComponent<HingeJoint>().motor = motorPuerta;
     }
+
+    public void abrircerrar(bool abrir)
+    {
+        if (abrir)
+        {
+            motorPuerta.targetVelocity = -100;
+            Abierta = false;
+        }
+        else
+        {
+            motorPuerta.targetVelocity = 100;
+            Abierta = true;
+        }
+
+        GetComponent<HingeJoint>().motor = motorPuerta;
+    }
 }
