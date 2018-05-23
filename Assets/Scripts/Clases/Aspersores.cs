@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Luces
+public class Aspersores
 {
+    public float humedad;
+    public bool ventana;
+    public bool alarma;
+
     /* Atributos generales */
     public string linea;
     public int equipo;
@@ -12,13 +16,8 @@ public class Luces
 
     /* Atributos para el cambio*/
     public string[] vars;
-    public GameObject[] lucesChidas;
 
-    /* Atributos para el get*/
-    public string variable;
-    public string valor;
-
-    public Luces()
+    public Aspersores()
     {
 
     }
@@ -62,7 +61,7 @@ public class Luces
         int i = 0;
         foreach (string s in vars)
         {
-            if (s.Substring(0,3) == "var")
+            if (s.Substring(0, 3) == "var")
             {
                 if (s.Split('=')[1] != "null")
                 {
@@ -72,18 +71,5 @@ public class Luces
             }
         }
         this.vars = v;
-    }
-
-    //Enciende y apaga las luces cuando leemos la linea de cambio
-    public void EncenderApagarCambio()
-    {
-        int i = 0;
-        foreach (GameObject go in this.lucesChidas)
-        {
-            bool estado = bool.Parse(this.vars[i]);
-
-            go.SetActive(estado);
-            i++;
-        }
     }
 }

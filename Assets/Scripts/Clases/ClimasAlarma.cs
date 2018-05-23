@@ -46,6 +46,8 @@ public class ClimasAlarma
             else if (object.Equals(metodo, "get"))
             {
                 //Debug.Log(this.vars[4]);
+                variable = this.vars[3].Split('=')[1];
+                valor = this.vars[3].Split('=')[1];
             }
             else if (object.Equals(metodo, "set"))
             {
@@ -73,11 +75,11 @@ public class ClimasAlarma
 
     public string Get(int variable)
     {
-        return string.Format("[equipo=0;actualizacion=0;metodo=get;variable={0}]", variable);
+        return string.Format("[equipo=0;actualizacion={0};metodo=get;variable={1}]", actualizacion, variable);
     }
 
     public string Set(int variable, string valor)
     {
-        return string.Format("[equipo=0;actualizacion=0;metodo=set;variable={0},valor={1}]", variable, valor);
+        return string.Format("[equipo=0;actualizacion={0};metodo=set;variable={1},valor={2}]", actualizacion, variable, valor);
     }
 }

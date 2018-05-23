@@ -9,24 +9,39 @@ public class ManagerLuces : MonoBehaviour
     public ConArduino arduino;
     public Luces Luz;
 
-    public IEnumerator lectura;
+    public string port;
+    public string lectura;
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
-        arduino = new ConArduino();
         Conectar();
     }
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		lectura = arduino.AsynchronousReadFromArduino(Luz.ReadLine);
-	}
 
+    void Start()
+    {
+        Luz = new Luces();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //return;
+        string textoDesdeArduino = arduino.ReadFromArduino(100);
+        if (textoDesdeArduino != null)
+        {
+            Debug.Log(textoDesdeArduino);
+            //Luz.readLine(textoDesdeArduino);
+            //Luz.lucesChidas = Lamparas;
+            //Luz.EncenderApagarCambio();
+
+            //Nos Falta actualizar el panel de control
+        }
+    }
     public void Conectar()
     {
-        arduino.port = "COM3";
+        arduino = new ConArduino();
+        arduino.port = port;
         arduino.Open();
     }
 

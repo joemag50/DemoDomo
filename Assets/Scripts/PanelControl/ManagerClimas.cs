@@ -9,6 +9,7 @@ public class ManagerClimas : MonoBehaviour
                       CClimas,
                       TextTempActual,
                       TextEstatusClima,
+                      TextEstatusAlarma,
                       TextTempMax,
                       TextTempMin;
 
@@ -19,15 +20,6 @@ public class ManagerClimas : MonoBehaviour
     public ConArduino arduino;
     public string port;
 
-    //Boleanos para andar leyendo el arduino pedorro jodido del demonio
-    //Les voy a llamar señales
-
-    public bool isGetTempActual;
-    public bool isGetClima;
-    public bool isGetTempMax;
-    public bool isGetTempMin;
-    public bool isGetAlarma;
-
     //ESTAS WEAS
     public string TempActual;
     public string EstatusClima;
@@ -35,74 +27,59 @@ public class ManagerClimas : MonoBehaviour
     public string TempMin;
     public string Alarma;
 
+    void Awake()
+    {
+        //this.Conectar();
+    }
+
     // Use this for initialization
     void Start() {
         ClimsAlrm = new ClimasAlarma();
-        isGetTempActual = false;
-        isGetClima = false;
-        isGetTempMax = false;
-        isGetTempMin = false;
-        isGetAlarma = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isGetAlarma)
+        //Debug.Log(arduino.ReadFromArduino(100));
+        return;
+        string textoDesdeArduino = arduino.ReadFromArduino(100);
+        if (textoDesdeArduino != null)
         {
-            Alarma = arduino.ReadFromArduino(100);
-            if (Alarma != null)
+            ClimsAlrm.readLine(textoDesdeArduino);
+            Debug.Log(textoDesdeArduino);
+            if (object.Equals(ClimsAlrm.metodo, "cambio"))
             {
-                //Aqui encendemos la regadera para apagar el incendio
-                ClimsAlrm.readLine(Alarma);
-                isGetAlarma = false;
-            }
-        }
-        if (isGetTempMin)
-        {
-            TempMin = arduino.ReadFromArduino(100);
-            if (TempMin != null)
-            {
-                //Para el panel de control
-                isGetTempMin = false;
-                TextTempMin.GetComponent<TextMeshProUGUI>().text = TempMin;
-            }
-        }
+                string var0 = ClimsAlrm.vars[0]; //Clima
+                string var1 = ClimsAlrm.vars[1]; //Alarma
+                string var2 = ClimsAlrm.vars[2]; //Actual
+                string var3 = ClimsAlrm.vars[3]; //Min
+                string var4 = ClimsAlrm.vars[4]; //Max
 
-        if (isGetTempMax)
-        {
-            TempMax = arduino.ReadFromArduino(100);
-            if (TempMax != null)
-            {
-                //Para el panel de control
-                isGetTempMax = false;
-                TextTempMax.GetComponent<TextMeshProUGUI>().text = TempMax;
+                //Vamos a poner una metirita piadosa, cuando llegue a cierta temp... vamos a encender el clima
+                if (int.Parse(var2) >= 25)
+                {
+                    var1 = "true";
+                }
+
+                TextEstatusAlarma.GetComponent<TextMeshProUGUI>().text = var0;
+                TextEstatusClima.GetComponent<TextMeshProUGUI>().text = var1;
+                TextTempActual.GetComponent<TextMeshProUGUI>().text = var2;
+                TextTempMin.GetComponent<TextMeshProUGUI>().text = var4;
+                TextTempMax.GetComponent<TextMeshProUGUI>().text = var3;
+
+                if (bool.Parse(var0))
+                {
+                    //Encendemos la regadera
+                    GameObject.FindWithTag("AspersorIncendio").GetComponent<ActivarParticulas>().StopOrPlay();
+                }
+
+                if (bool.Parse(var1))
+                {
+                    //Encendemos el Clima
+                    GameObject.FindWithTag("Clima").GetComponent<ActivarParticulas>().StopOrPlay();
+                }
             }
         }
-
-        if (isGetClima)
-        {
-            EstatusClima = arduino.ReadFromArduino(100);
-            if (EstatusClima != null)
-            {
-                //Aqui vamos a encender y apagar las particulas del clima
-                isGetClima = false;
-                TextEstatusClima.GetComponent<TextMeshProUGUI>().text = EstatusClima;
-            }
-        }
-
-        if (isGetTempActual)
-        {
-            TempActual = arduino.ReadFromArduino(100);
-            if (TempActual != null)
-            {
-                //Aqui si llegamos a una temperatura muy alta, encendemos el incendio
-                isGetTempActual = false;
-                TextTempActual.GetComponent<TextMeshProUGUI>().text = TempActual;
-            }
-        }
-
-        /* AQUI VAMOS A LEER LA LINEA DE CAMBIOS */
     }
 
     public void Regresar()
@@ -113,49 +90,8 @@ public class ManagerClimas : MonoBehaviour
 
     public void Conectar()
     {
-        arduino.port = "COM3";
+        arduino = new ConArduino();
+        arduino.port = port;
         arduino.Open();
-    }
-
-    //Encendio Apagado
-    public void GetClima()
-    {
-        arduino.WriteToArduino(ClimsAlrm.Get(0));
-        isGetClima = true;
-    }
-
-    public void GetAlarma()
-    {
-        arduino.WriteToArduino(ClimsAlrm.Get(1));
-        isGetAlarma = true;
-    }
-
-    public void GetTempActual()
-    {
-        arduino.WriteToArduino(ClimsAlrm.Get(2));
-        isGetTempActual = true;
-    }
-
-    public void GetTempMax()
-    {
-        arduino.WriteToArduino(ClimsAlrm.Get(3));
-        isGetTempMax = true;
-    }
-
-    public void GetTempMin()
-    {
-        arduino.WriteToArduino(ClimsAlrm.Get(4));
-        isGetTempMin = true;
-    }
-
-    //Ajustar la temperatura Maxima
-    public void SetTempMax()
-    {
-
-    }
-
-    public void SetTempMin()
-    {
-
     }
 }

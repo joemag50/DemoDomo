@@ -4,11 +4,11 @@ using UnityEngine;
 using System.IO.Ports;
 using System;
 
-public class ConArduino : MonoBehaviour
+public class ConArduino
 {
     /* The serial port where the Arduino is connected. */
     [Tooltip("The serial port where the Arduino is connected")]
-    public string port = "COM4";
+    public string port;
 
     /* The baudrate of the serial port. */
     [Tooltip("The baudrate of the serial port")]
@@ -21,14 +21,9 @@ public class ConArduino : MonoBehaviour
 
     private SerialPort stream;
 
-    void Start()
+    public ConArduino()
     {
-        //Open();
-    }
 
-    void Update()
-    {
-        
     }
 
     public void Open()
