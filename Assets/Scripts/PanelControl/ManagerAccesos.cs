@@ -12,6 +12,7 @@ public class ManagerAccesos : MonoBehaviour
 {
     public GameObject prefabElementoLista, contenido;
     public GameObject CAccesos, CPrincipal;
+	public GameObject puertabonita;
     public bool ACTIVADO;
     public ConArduino arduino;
     public Accesos acc;
@@ -22,6 +23,10 @@ public class ManagerAccesos : MonoBehaviour
     private string nombre;
     private string idtarjeta;
     private string ultimoacceso;
+
+	private bool cerrarPuerta = false;
+	private float tiempoOriginal = 3;
+	private float tiempo;
 
     // Use this for initialization
     void Awake()
@@ -49,11 +54,26 @@ public class ManagerAccesos : MonoBehaviour
         if (textoDesdeArduino != null)
         {
             acc.readLine(textoDesdeArduino);
-            nombre = acc.vars[0];
-            idtarjeta = acc.vars[1];
-            ultimoacceso = acc.vars[2];
-            GuardarAcceso();
+            this.nombre = acc.vars[0];
+            this.idtarjeta = acc.vars[1];
+            this.ultimoacceso = acc.vars[2];
+            //GuardarAcceso();
+
+			puertabonita.GetComponent<AbrirCerrarPuerta> ().abrircerrar ();
+			cerrarPuerta = true;
+			tiempo = tiempoOriginal;
         }
+
+		if (cerrarPuerta)
+		{
+			Debug.Log (tiempo);
+			tiempo -= Time.deltaTime;
+			if (tiempo < 0)
+			{
+				puertabonita.GetComponent<AbrirCerrarPuerta> ().abrircerrar ();
+				cerrarPuerta = false;
+			}
+		}
     }
 
     public void GuardarAcceso()

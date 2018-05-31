@@ -6,7 +6,9 @@ public class AbrirCerrarPuerta : MonoBehaviour
 {
     public bool Abierta;
     JointMotor motorPuerta;
-
+	float tiempoOriginal = 4;
+	float tiempo = 4;
+	bool ActivarTiempo = false;
 	// Use this for initialization
 	void Start ()
     {
@@ -18,7 +20,7 @@ public class AbrirCerrarPuerta : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
+
 	}
 
     public void abrircerrar()

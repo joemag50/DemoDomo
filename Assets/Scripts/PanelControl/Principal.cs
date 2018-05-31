@@ -6,7 +6,7 @@ public class Principal : MonoBehaviour
 {
 	public GameObject CPrincipal,
 						CLuces, CClimas, CAccesos,
-						CAspersores, CVentanas, CInformes;
+						CAspersores;
 
 	// Use this for initialization
 	void Start () {
@@ -25,8 +25,6 @@ public class Principal : MonoBehaviour
 		CClimas.SetActive(false);
 		CAccesos.SetActive(false);
 		CAspersores.SetActive(false);
-		CVentanas.SetActive(false);
-		CInformes.SetActive(false);
 	}
 
 	public void GUIClimas()
@@ -36,8 +34,6 @@ public class Principal : MonoBehaviour
 		CClimas.SetActive(true);
 		CAccesos.SetActive(false);
 		CAspersores.SetActive(false);
-		CVentanas.SetActive(false);
-		CInformes.SetActive(false);
 	}
 
 	public void GUIAccesos()
@@ -47,8 +43,6 @@ public class Principal : MonoBehaviour
 		CClimas.SetActive(false);
 		CAccesos.SetActive(true);
 		CAspersores.SetActive(false);
-		CVentanas.SetActive(false);
-		CInformes.SetActive(false);
 	}
 
 	public void GUIAspersores()
@@ -58,29 +52,5 @@ public class Principal : MonoBehaviour
 		CClimas.SetActive(false);
 		CAccesos.SetActive(false);
 		CAspersores.SetActive(true);
-		CVentanas.SetActive(false);
-		CInformes.SetActive(false);
-	}
-
-	public void GUIVentanas()
-	{
-		CPrincipal.SetActive(false);
-		CLuces.SetActive(false);
-		CClimas.SetActive(false);
-		CAccesos.SetActive(false);
-		CAspersores.SetActive(false);
-		CVentanas.SetActive(true);
-		CInformes.SetActive(false);
-	}
-
-	public void GUIInformes()
-	{
-		CPrincipal.SetActive(false);
-		CLuces.SetActive(false);
-		CClimas.SetActive(false);
-		CAccesos.SetActive(false);
-		CAspersores.SetActive(false);
-		CVentanas.SetActive(false);
-		CInformes.SetActive(true);
 	}
 }

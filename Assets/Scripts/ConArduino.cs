@@ -29,7 +29,7 @@ public class ConArduino
     public void Open()
     {
         // Opens the serial port
-        stream = new SerialPort(port, baudrate);
+		stream = new SerialPort(@"\\.\" + port, baudrate);
         stream.ReadTimeout = 50;
         stream.Open();
         //this.stream.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
